@@ -1,5 +1,6 @@
 #include "string.hpp"
 
+#include <iostream>
 #include <istream>
 #include <ostream>
 #include <utility>
@@ -41,7 +42,10 @@ bool String::in_bounds(int index) const {
 }
 
 char String::operator[](int index) const {
-    if (!in_bounds(index)) return '\0';
+    if (!in_bounds(index)) {
+        std::cout << "ERROR: Index Out Of Bounds" << std::endl;
+        return '\0';
+    }
     return list::nth(head, index)->data;
 }
 
@@ -111,4 +115,3 @@ std::istream &operator>>(std::istream &in, String &s) {
     s.read(in);
     return in;
 }
-
